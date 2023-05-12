@@ -347,3 +347,5 @@ pub use serde_derive::{Deserialize, Serialize};
 mod actually_private {
     pub struct T;
 }
+
+extern crate bytes;

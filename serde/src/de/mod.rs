@@ -126,6 +126,8 @@ mod utf8;
 
 pub use self::ignored_any::IgnoredAny;
 
+use bytes::Bytes;
+
 #[cfg(feature = "std")]
 #[doc(no_inline)]
 pub use std::error::Error as StdError;
@@ -1569,6 +1571,14 @@ pub trait Visitor<'de>: Sized {
         E: Error,
     {
         self.visit_bytes(v)
+    }
+
+    /// proof of concept
+    fn visit_bytes_bytes<E>(self, v: Bytes) -> Result<Self::Value, E>
+    where
+        E: Error,
+    {
+        self.visit_bytes(&v)
     }
 
     /// The input contains a byte array and ownership of the byte array is being
